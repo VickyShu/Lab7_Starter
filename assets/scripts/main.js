@@ -108,7 +108,7 @@ async function getRecipes() {
       } catch (error) {
         console.error(error);
         reject(error);
-      }
+      };
     }
   });
 
