@@ -52,9 +52,7 @@ function initializeServiceWorker() {
   // B3. TODO - Register './sw.js' as a service worker (The MDN article
   //            "Using Service Workers" will help you here)
       try {
-        const registration = await this.navigator.serviceWorker.register("./sw.js", {
-          scope: "./",
-        });
+        const registration = await navigator.serviceWorker.register("./sw.js", {scope: "./",});
   // B4. TODO - Once the service worker has been successfully registered, console
   //            log that it was successful.
       if (registration.active) {
@@ -63,7 +61,7 @@ function initializeServiceWorker() {
   // B5. TODO - In the event that the service worker registration fails, console
   //            log that it has failed.
       } catch (error) {
-        console.error("Registration failed.");
+        console.error(`Registration failed with ${error}`);
       }
   // STEPS B6 ONWARDS WILL BE IN /sw.js
     });
@@ -102,9 +100,8 @@ async function getRecipes() {
       try {
         const recipeResponse = await fetch(RECIPE_URLS[i]);
         const fetched = await recipeResponse.json();
-        console.log(fetched);
         recipeArray.push(fetched);
-        if(recipeArray.length == RECIPE_URLS.length){
+        if(i == RECIPE_URLS.length - 1){
           saveRecipesToStorage(recipeArray);
           resolve(recipeArray);
         }
