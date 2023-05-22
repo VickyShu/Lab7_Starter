@@ -63,8 +63,6 @@ function initializeServiceWorker() {
   // STEPS B6 ONWARDS WILL BE IN /sw.js
       });
     });
-  } else {
-    console.error('Service workers are not supported.');
   }
 }
 
